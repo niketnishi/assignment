@@ -1,0 +1,37 @@
+.hide-element {
+    visibility: hidden;
+}
+.url-form {
+    width: 95%;
+    margin: auto;
+}
+@media only screen and (min-width: 576px) {
+    .url-form {
+        width: 70%;
+    }
+}
+@media only screen and (min-width: 720px) {
+    .url-form {
+        width: 60%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .url-form {
+        width: 65%;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .url-form {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .url-form {
+        width: 40%;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    .url-form {
+        width: 30%;
+    }
+}

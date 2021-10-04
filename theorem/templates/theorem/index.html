@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Assignment{% endblock %}
+
+{% block styleexternal %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block jsexternal %}
+{% endblock %}
+
+{% block jsinline %}
+
+// Fetches title and description for thr given url
+function getUrlTitleDescription() {
+    let url = $('#url-input').val().match(/(http(s)?:\/\/.)+(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(url) {
+        let header_data = {};
+        header_data['X-CSRFToken'] = $('[name="csrfmiddlewaretoken"]').val();
+        $.ajaxSetup({
+            headers: header_data
+        });
+        $.ajax({
+            url : "/get-url-details/",
+            type : "post",
+            async: false,
+            cache: false,
+            data : {
+                'url': $('#url-input').val(),
+            }
+        }).done(function(data) {
+            if (data['status'] == 200) {
+                $('#output-element').removeClass('hide-element');
+                $('#title-data').html(data['title']);
+                $('#description-data').html(data['description']);
+            } else {
+                console.log(data['message']);
+            }
+        });
+    } else {
+        alert('Please enter a valid url');
+    }
+}
+{% endblock %}
+
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid url-form" style="margin-top:80px">
+    <div class="col-sm-12 mb-3">
+        <label for="url-input" class="form-label">URL (Please include http and https in url)</label>
+        <input type="text" class="form-control" id="url-input" placeholder="Enter the url here">
+    </div>
+    <button class="btn btn-primary" onclick="getUrlTitleDescription();">Submit</button>
+    <div id="output-element" class="hide-element" style="margin-top: 30px;">
+        <p><span>Title: </span><span id="title-data"></span></p>
+        <p><span>Description: </span><span id="description-data"></span></p>
+    </div>
+</div>
+{% endblock %}

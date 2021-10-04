@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+/* Global Styles*/
+body {
+    /*font-size: 15px;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;*/
+    font: 15px/1.5 Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /*background-color: #f4f4f4;*/
+}
+.clearfix {
+  overflow: hidden;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.invalid-input {
+    border-bottom: 1px solid #c10000 !important;
+    color: #c10000 !important;
+}
+#user_fa {
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+#user_fa i {
+    color: #212529;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.mb12 {
+    margin-bottom: 12px;
+}
